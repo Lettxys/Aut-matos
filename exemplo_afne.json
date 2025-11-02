@@ -1,0 +1,23 @@
+{
+  "tipo": "AFNe",
+  "estados": ["q0", "q1", "q2", "q3"],
+  "alfabeto": ["a", "b", "ε"],
+  "transicoes": {
+    "q0": {
+      "ε": ["q1"],
+      "a": ["q0"]
+    },
+    "q1": {
+      "b": ["q2"]
+    },
+    "q2": {
+      "ε": ["q3"],
+      "a": ["q2"]
+    },
+    "q3": {
+      "b": ["q3"]
+    }
+  },
+  "estado_inicial": "q0",
+  "estados_finais": ["q3"]
+}
