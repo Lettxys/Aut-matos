@@ -3,7 +3,6 @@ import sys
 from collections import deque
 
 def fecho_epsilon(estados, transicoes):
-    """Calcula todos estados alcançáveis por epsilon"""
     fecho = set(estados)
     pilha = list(estados)
     
@@ -17,7 +16,6 @@ def fecho_epsilon(estados, transicoes):
     return fecho
 
 def remover_epsilon(dados):
-    """Remove transições epsilon (AFNε → AFN)"""
     print("Removendo transições epsilon...")
     
     alfabeto = set(dados['alfabeto']) - {'ε'}
@@ -36,7 +34,6 @@ def remover_epsilon(dados):
             if destinos:
                 transicoes_novas[estado][simbolo] = list(destinos)
     
-    # Novos estados finais
     finais_novos = []
     for estado in dados['estados']:
         fecho = fecho_epsilon({estado}, dados['transicoes'])
@@ -53,7 +50,6 @@ def remover_epsilon(dados):
     }
 
 def determinizar(dados):
-    """Converte AFN para AFD"""
     print("Convertendo para AFD...")
     
     inicial = frozenset([dados['estado_inicial']])
@@ -78,13 +74,11 @@ def determinizar(dados):
                     estados_novos.add(novo)
                     fila.append(novo)
     
-    # Estados finais
     finais_novos = set()
     for estado in estados_novos:
         if any(e in dados['estados_finais'] for e in estado):
             finais_novos.add(estado)
     
-    # Renomear estados
     mapa = {e: f'q{i}' for i, e in enumerate(sorted(estados_novos))}
     
     return {
@@ -98,10 +92,8 @@ def determinizar(dados):
     }
 
 def minimizar(dados):
-    """Minimiza AFD"""
     print("Minimizando...")
-    
-    # Partição inicial: finais e não-finais
+
     finais = set(dados['estados_finais'])
     nao_finais = set(dados['estados']) - finais
     
@@ -117,7 +109,6 @@ def minimizar(dados):
                 return i
         return -1
     
-    # Refinar partições
     mudou = True
     while mudou:
         mudou = False
@@ -146,7 +137,6 @@ def minimizar(dados):
         
         particoes = novas
     
-    # Construir AFD mínimo
     mapa = {}
     for i, p in enumerate(particoes):
         for e in p:
@@ -171,23 +161,20 @@ def minimizar(dados):
     }
 
 def processar(arquivo):
-    """Processa o autômato"""
     print(f"\nProcessando: {arquivo}")
     print("-" * 40)
     
-    with open(arquivo) as f:
+    with open(arquivo, encoding='utf-8') as f:
         dados = json.load(f)
     
     print(f"Tipo: {dados['tipo']}")
     print(f"Estados: {len(dados['estados'])}")
     
-    # Converter transições de lista para set se necessário
     for estado in dados['transicoes']:
         for simbolo in dados['transicoes'][estado]:
             if isinstance(dados['transicoes'][estado][simbolo], list):
                 dados['transicoes'][estado][simbolo] = dados['transicoes'][estado][simbolo]
     
-    # Processar conforme tipo
     if dados['tipo'] == 'AFNe':
         dados = remover_epsilon(dados)
         print(f"→ AFN: {len(dados['estados'])} estados")
@@ -200,10 +187,9 @@ def processar(arquivo):
         dados = minimizar(dados)
         print(f"→ Mínimo: {len(dados['estados'])} estados")
     
-    # Salvar
     saida = arquivo.replace('.json', '_resultado.json')
-    with open(saida, 'w') as f:
-        json.dump(dados, f, indent=2)
+    with open(saida, 'w', encoding='utf-8') as f:
+        json.dump(dados, f, indent=2, ensure_ascii=False)
     
     print(f"\n✓ Salvo em: {saida}")
     print("-" * 40)
