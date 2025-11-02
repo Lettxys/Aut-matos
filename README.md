@@ -498,12 +498,12 @@ O algoritmo de minimização identifica e funde estados equivalentes.
 
 ---
 
-## Equipe e Contato
+## Equipe
 
 **Equipe:**
-- [Nome do Integrante 1]
-- [Nome do Integrante 2]
-- [Nome do Integrante 3]
+- Leticia Almeida Lima
+- Isabelli Araujo Pinho
+- Elislandia Aparecida Horlanda da Silva
 
 **Professor:** Rafael Martins Barros  
 **Instituição:** Universidade Federal do Ceará - Campus Crateús  
