@@ -113,7 +113,7 @@ As transições seguem a estrutura:
 **AFD (único destino):**
 ```json
 "q0": {
-  "a": "q1",  ← único destino (pode ser string ou lista)
+  "a": "q1",  ← único destino (apenas string)
   "b": "q0"
 }
 ```
@@ -205,7 +205,7 @@ transicoes: dict[str, dict[str, list]]
 }
 ```
 - **Tipo:** Dicionário de dicionários de listas
-- **Estrutura:** `{estado: {simbolo: [lista_destinos]}}`
+- **Estrutura:** `{estado: {simbolo: [lista_destinos]}} ou {estado: {simbolo: destino}}`
 - **Justificativa:**
   - **Acesso O(1):** `transicoes[estado][simbolo]` é instantâneo
   - **Flexibilidade:** Suporta AFN (múltiplos destinos) e AFD (único destino)
