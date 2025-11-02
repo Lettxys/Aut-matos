@@ -27,14 +27,16 @@ O programa **detecta automaticamente** o tipo de autômato de entrada e aplica a
 ### Modo 1: Linha de Comando
 
 ```bash
-python minimizacao_automatos.py arquivo_entrada.json
+python minimizacao_automatos.py exemplos/arquivo_entrada.json
 ```
+
+Como os exemplos estão dentro de uma pasta chamada "exemplos", não esqueça do exemplos/.
 
 **Exemplos:**
 ```bash
-python minimizacao_automatos.py exemplo_afn.json
-python minimizacao_automatos.py exemplo_afne.json
-python minimizacao_automatos.py exemplo_afd.json
+python minimizacao_automatos.py exemplos/exemplo_afn.json
+python minimizacao_automatos.py exemplos/exemplo_afne.json
+python minimizacao_automatos.py exemplos/exemplo_afd.json
 ```
 
 O resultado será salvo como `arquivo_entrada_resultado.json`
