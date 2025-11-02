@@ -113,7 +113,7 @@ As transições seguem a estrutura:
 **AFD (único destino):**
 ```json
 "q0": {
-  "a": "q1",  ← único destino (pode ser string ou lista)
+  "a": "q1",  ← único destino (apenas string)
   "b": "q0"
 }
 ```
@@ -205,7 +205,7 @@ transicoes: dict[str, dict[str, list]]
 }
 ```
 - **Tipo:** Dicionário de dicionários de listas
-- **Estrutura:** `{estado: {simbolo: [lista_destinos]}}`
+- **Estrutura:** `{estado: {simbolo: [lista_destinos]}} ou {estado: {simbolo: destino}}`
 - **Justificativa:**
   - **Acesso O(1):** `transicoes[estado][simbolo]` é instantâneo
   - **Flexibilidade:** Suporta AFN (múltiplos destinos) e AFD (único destino)
@@ -498,12 +498,12 @@ O algoritmo de minimização identifica e funde estados equivalentes.
 
 ---
 
-## Equipe e Contato
+## Equipe
 
 **Equipe:**
-- [Nome do Integrante 1]
-- [Nome do Integrante 2]
-- [Nome do Integrante 3]
+- Leticia Almeida Lima
+- Isabelli Araujo Pinho
+- Elislandia Aparecida Horlanda da Silva
 
 **Professor:** Rafael Martins Barros  
 **Instituição:** Universidade Federal do Ceará - Campus Crateús  
